@@ -1,0 +1,27 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/style.css" />
+		<title>Student Registration</title>
+	</head>
+	<body>
+		{{>header}}
+		<div class="stud-form">
+			<div class="innerform">
+				<form action="/login" method="POST">
+					<div class="flabel"><label>Email</label></div>
+					<input type="email" name="email">
+
+					<div class="flabel"><label>Password</label></div>
+					<input type="password" name="password">
+				
+					<div>
+						<button type="submit" class="fbtn">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-image: linear-gradient(
+		rgba(67, 152, 185, 0.61),
+		rgba(67, 152, 185, 0.61)
+	);
+}
+.app-container {
+	max-width: 70%;
+	margin: 100px auto;
+	text-align: center;
+}
+.funcollege {
+	font-size: 50px;
+	color: #555;
+	font-family: sans-serif;
+}
+
+.stud-form {
+	width: 700px;
+	margin: 50px auto;
+}
+.innerform {
+	width: fit-content;
+	margin: auto;
+}
+.flabel {
+	margin-bottom: 5px;
+}
+label {
+	font-size: 20px;
+	margin-bottom: 10px;
+	font-family: sans-serif;
+}
+input {
+	width: 400px;
+	height: 40px;
+	padding: 5px 10px;
+	font-size: 18px;
+	border: none;
+	outline: none;
+	margin-bottom: 10px;
+	border-radius: 12px;
+}
+input:focus {
+	border-left: 5px solid #1098ad;
+}
+.fbtn {
+	width: 400px;
+	color: white;
+	background-color: #1971c2;
+	font-weight: bold;
+	height: 40px;
+	border: none;
+	border-radius: 12px;
+	font-size: 18px;
+}
+.fbtn:hover {
+	cursor: pointer;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	background-color: #1971c2;
+	height: 34px;
+}
+
+.navi {
+	display: flex;
+	width: 400px;
+	justify-content: center;
+	gap: 20px;
+	padding: 5px 10px;
+}
+
+a:link,
+a:visited {
+	text-decoration: none;
+	font-size: 20px;
+	letter-spacing: 1px;
+	color: white;
+	padding: 2px 4px;
+}
+
+a:hover {
+	font-size: 22px;
+}
