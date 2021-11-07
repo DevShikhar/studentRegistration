@@ -1,6 +1,7 @@
 require("../db/conn");
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcrypt");
 
 const studSchema = mongoose.Schema({
 	fname: {
@@ -25,6 +26,15 @@ const studSchema = mongoose.Schema({
 	password: {
 		type: String,
 	},
+});
+
+studSchema.pre("save", async function (next) {
+	if (this.isModified("password")) {
+		const passHash = await bcrypt.hash(this.password, 10);
+		this.password = passHash;
+		console.log(this.password);
+	}
+	next();
 });
 
 const Student = mongoose.model("Cstudent", studSchema);

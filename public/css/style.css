@@ -90,3 +90,9 @@ a:visited {
 a:hover {
 	font-size: 22px;
 }
+
+.loginerror {
+	font-family: sans-serif;
+	color: rgba(255, 0, 0, 0.61);
+	font-size: 25px;
+}

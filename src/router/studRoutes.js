@@ -1,8 +1,8 @@
-const { application } = require("express");
 const express = require("express");
-const { findById } = require("../models/student");
 const router = express.Router();
 const Student = require("../models/student");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 router.get("/", (req, res) => {
 	res.render("app");
@@ -17,14 +17,10 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/test", async (req, res) => {
-	const stud = req.body;
-	console.log(stud, "stud");
-	const studs = [new Student(stud)];
-	console.log(studs, "studs");
 	try {
-		const result = await Student.insertMany(studs);
-		console.log(result, "result");
-		// res.status(201).send(result);
+		const stud = req.body;
+		const studs = new Student(stud);
+		const result = await studs.save();
 		res.status(201).render("app", { successReg: "Registered " });
 	} catch (error) {
 		console.log(error.message);
@@ -71,18 +67,32 @@ router.delete("/test/:id", async (req, res) => {
 	}
 });
 
+const createToken = async () => {
+	const token = jwt.sign({ idd: "shikhar" }, `shikhar`);
+	console.log(token);
+};
+
+createToken();
 router.post("/login", async (req, res) => {
 	try {
 		const { email, password: pass } = req.body;
-		const creds = await Student.find({ email, password: pass });
-		console.log("***************************");
-		console.log(creds);
-		res.render("funcollege", {
-			loginSuccess: "Logged in Successfully",
-			user: creds[0].fname,
-		});
+		const creds = await Student.findOne({ email });
+		const passMatch = await bcrypt.compare(pass, creds.password);
+		if (creds !== null) {
+			if (passMatch && email === creds.email) {
+				res.status(201).render("funcollege", {
+					loginSuccess: "Logged in Successfully",
+					user: creds.fname,
+				});
+			} else {
+				res.render("login", { loginerror: "Invalid email or password" });
+			}
+		} else {
+			res.render("login", { loginerror: "Invalid email or password" });
+		}
 	} catch (error) {
 		console.log(error);
+		res.status(400).send(error);
 	}
 });
 
